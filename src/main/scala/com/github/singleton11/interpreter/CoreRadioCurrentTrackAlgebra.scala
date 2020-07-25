@@ -11,14 +11,13 @@ import scala.concurrent.ExecutionContext.global
 
 object CoreRadioCurrentTrackAlgebra {
 
+  private val URI = uri"https://coreradio.ru/icecast2_dark.php"
+
   def IOInterpreter(effect: ConcurrentEffect[IO]): CurrentTrackAlgebra[IO, String] = new CurrentTrackAlgebra[IO, String] {
     override def getCurrentTrack: IO[String] = getCurrentTrackFromCoreRadioHttpCall(effect)
   }
 
   private def getCurrentTrackFromCoreRadioHttpCall(implicit effect: ConcurrentEffect[IO]): IO[String] = {
-    BlazeClientBuilder[IO](global).resource.use { client =>
-      val coreRadioUrl = uri"https://coreradio.ru/icecast2_dark.php"
-      client.expect[String](coreRadioUrl)
-    }
+    BlazeClientBuilder[IO](global).resource.use { client => client.expect[String](URI) }
   }
 }
