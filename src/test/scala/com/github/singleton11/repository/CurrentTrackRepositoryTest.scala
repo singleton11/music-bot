@@ -2,9 +2,12 @@ package com.github.singleton11.repository
 
 import cats.Id
 import com.github.singleton11.algebra.CurrentTrackAlgebra
+import com.github.singleton11.util.testimplicits._
+import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
 import org.specs2.mutable.Specification
 
 class CurrentTrackRepositoryTest extends Specification {
+
   "when CurrentTrackRepository.get return empty string" >> {
 
     object TestCurrentTrackAlgebra {
@@ -13,7 +16,8 @@ class CurrentTrackRepositoryTest extends Specification {
       }
     }
 
-    val repository = new CurrentTrackRepository[Id](TestCurrentTrackAlgebra.IdInterpreter)
+
+    val repository = new CurrentTrackRepository[Id](TestCurrentTrackAlgebra.IdInterpreter, Slf4jLogger.getLogger[Id])
 
     "should return nothing" >> {
       repository.get must be empty
@@ -27,7 +31,7 @@ class CurrentTrackRepositoryTest extends Specification {
       }
     }
 
-    val repository = new CurrentTrackRepository[Id](TestCurrentTrackAlgebra.IdInterpreter)
+    val repository = new CurrentTrackRepository[Id](TestCurrentTrackAlgebra.IdInterpreter, Slf4jLogger.getLogger[Id])
 
     "should return correct CurrentTrack" >> {
       repository.get.get.track must beEqualTo("Concept Citizen")

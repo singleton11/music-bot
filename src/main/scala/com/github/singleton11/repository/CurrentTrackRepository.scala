@@ -6,10 +6,14 @@ import cats.implicits._
 import com.github.singleton11.algebra.CurrentTrackAlgebra
 import com.github.singleton11.domain.CurrentTrack
 import com.github.singleton11.util.implicits._
+import io.chrisdavenport.log4cats.Logger
 
-class CurrentTrackRepository[F[_] : Monad](algebra: CurrentTrackAlgebra[F, String]) {
+class CurrentTrackRepository[F[_] : Monad](algebra: CurrentTrackAlgebra[F, String], logger: Logger[F]) {
 
-  def get: F[Option[CurrentTrack]] = algebra.getCurrentTrack.map(value => getCurrentTrackFromHtml(value))
+  def get: F[Option[CurrentTrack]] = for {
+    currentTrack <- algebra.getCurrentTrack.map(value => getCurrentTrackFromHtml(value))
+    _ <- logger.info(s"Current track is $currentTrack")
+  } yield currentTrack
 
   private def getCurrentTrackFromHtml(html: String): Option[CurrentTrack] = {
     for {

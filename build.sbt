@@ -24,5 +24,6 @@ libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % "4.10.0" % "test")
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.3.0-alpha5"
 
 libraryDependencies ++= Seq(
-  "io.chrisdavenport" %% "log4cats-core" % "1.1.1"
+  "io.chrisdavenport" %% "log4cats-core" % "1.1.1",
+  "io.chrisdavenport" %% "log4cats-slf4j"   % "1.1.1",
 )
