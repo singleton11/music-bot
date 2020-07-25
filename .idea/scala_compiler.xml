@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <profile name="sbt 1" modules="music-bot">
+      <option name="postfixOps" value="true" />
       <option name="higherKinds" value="true" />
     </profile>
   </component>

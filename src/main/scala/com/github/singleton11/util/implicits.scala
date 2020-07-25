@@ -15,7 +15,7 @@ object implicits {
       val index = s.indexOf(what)
       index match {
         case -1 => Option.empty[Int]
-        case i => Some(i - 1)
+        case i => Some(i)
       }
     }
   }

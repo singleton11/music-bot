@@ -12,3 +12,5 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion
 )
+
+libraryDependencies ++= Seq("org.specs2" %% "specs2-core" % "4.10.0" % "test")
