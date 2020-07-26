@@ -15,12 +15,10 @@ class CurrentTrackRepository[F[_] : Monad](algebra: CurrentTrackAlgebra[F, Strin
     _ <- logger.info(s"Current track is $currentTrack")
   } yield currentTrack
 
-  private def getCurrentTrackFromHtml(html: String): Option[CurrentTrack] = {
-    for {
-      rawTrackValue <- getRawTrackValue(html)
-      currentTrack <- getCurrentTrack(rawTrackValue)
-    } yield currentTrack
-  }
+  private def getCurrentTrackFromHtml(html: String) = for {
+    rawTrackValue <- getRawTrackValue(html)
+    currentTrack <- getCurrentTrack(rawTrackValue)
+  } yield currentTrack
 
   private def getRawTrackValue(html: String) = for {
     start <- html indexAfter "<title>"
