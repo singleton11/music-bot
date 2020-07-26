@@ -22,17 +22,13 @@ class CurrentTrackRepository[F[_] : Monad](algebra: CurrentTrackAlgebra[F, Strin
     } yield currentTrack
   }
 
-  private def getRawTrackValue(html: String): Option[String] = {
-    for {
-      start <- html indexAfter "<title>"
-      end <- html indexBefore "</title>"
-    } yield html.slice(start, end)
-  }
+  private def getRawTrackValue(html: String) = for {
+    start <- html indexAfter "<title>"
+    end <- html indexBefore "</title>"
+  } yield html.slice(start, end)
 
-  private def getCurrentTrack(rawTrackValue: String): Option[CurrentTrack] = {
-    for {
-      track <- (rawTrackValue indexBefore " - ").map(value => rawTrackValue.slice(0, value))
-      artist <- (rawTrackValue indexAfter " - ").map(value => rawTrackValue.slice(value, rawTrackValue.length))
-    } yield CurrentTrack(track, artist)
-  }
+  private def getCurrentTrack(rawTrackValue: String) = for {
+    track <- (rawTrackValue indexBefore " - ").map(value => rawTrackValue.slice(0, value))
+    artist <- (rawTrackValue indexAfter " - ").map(value => rawTrackValue.slice(value, rawTrackValue.length))
+  } yield CurrentTrack(track, artist)
 }

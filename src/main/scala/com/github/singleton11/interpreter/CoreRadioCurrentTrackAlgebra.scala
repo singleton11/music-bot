@@ -17,7 +17,6 @@ object CoreRadioCurrentTrackAlgebra {
     override def getCurrentTrack: IO[String] = getCurrentTrackFromCoreRadioHttpCall(effect)
   }
 
-  private def getCurrentTrackFromCoreRadioHttpCall(implicit effect: ConcurrentEffect[IO]): IO[String] = {
+  private def getCurrentTrackFromCoreRadioHttpCall(implicit effect: ConcurrentEffect[IO]): IO[String] =
     BlazeClientBuilder[IO](global).resource.use { client => client.expect[String](URI) }
-  }
 }
