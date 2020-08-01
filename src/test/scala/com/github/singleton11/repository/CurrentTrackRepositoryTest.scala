@@ -6,7 +6,7 @@ import com.github.singleton11.util.testimplicits._
 import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
 import org.specs2.mutable.Specification
 
-class CurrentItemRepositoryTest extends Specification {
+class CurrentTrackRepositoryTest extends Specification {
 
   "when CurrentTrackRepository.get return empty string" >> {
 
