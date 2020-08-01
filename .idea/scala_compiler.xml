@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
+    <option name="higherKinds" value="true" />
+    <option name="macros" value="true" />
     <profile name="sbt 1" modules="music-bot">
+      <option name="postfixOps" value="true" />
       <option name="higherKinds" value="true" />
       <option name="featureWarnings" value="true" />
       <parameters>
         <parameter value="-language:_" />
         <parameter value="-Ymacro-annotations" />
       </parameters>
+      <plugins>
+        <plugin path="$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/typelevel/kind-projector_2.13.3/0.11.0/kind-projector_2.13.3-0.11.0.jar" />
+      </plugins>
     </profile>
   </component>
 </project>

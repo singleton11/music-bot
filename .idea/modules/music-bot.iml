@@ -60,6 +60,8 @@
     <orderEntry type="library" name="sbt: org.typelevel:cats-effect_2.13:2.1.4:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.13:2.1.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.13:2.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-tagless-core_2.13:0.11:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-tagless-macros_2.13:0.11:jar" level="project" />
     <orderEntry type="library" name="sbt: org.typelevel:jawn-parser_2.13:1.0.0:jar" level="project" />
   </component>
 </module>
