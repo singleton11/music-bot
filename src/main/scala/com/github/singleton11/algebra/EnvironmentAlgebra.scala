@@ -4,7 +4,7 @@ import cats.tagless.autoFunctorK
 
 @autoFunctorK
 trait EnvironmentAlgebra[F[_]] {
-  def getRedisHost: F[String]
+  def getRedisHost: F[Option[String]]
 
-  def getSpotifyAuthorizationToken: F[String]
+  def getSpotifyAuthorizationToken: F[Option[String]]
 }
