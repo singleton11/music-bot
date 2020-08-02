@@ -19,6 +19,7 @@
     <profile name="sbt 1" modules="music-bot">
       <option name="higherKinds" value="true" />
       <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
       <parameters>
         <parameter value="-language:_" />
         <parameter value="-Ymacro-annotations" />

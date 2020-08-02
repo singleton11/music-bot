@@ -8,7 +8,8 @@ val http4sVersion = "0.21.5"
 scalacOptions ++= Seq(
   "-feature",
   "-language:_",
-  "-Ymacro-annotations"
+  "-Ymacro-annotations",
+  "-explaintypes"
 )
 
 libraryDependencies += "org.typelevel" %% "cats-effect" % "2.1.4"
