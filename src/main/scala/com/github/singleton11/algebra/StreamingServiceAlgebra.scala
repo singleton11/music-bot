@@ -1,10 +1,9 @@
 package com.github.singleton11.algebra
 
-import com.github.singleton11.dto.spotify.Response
-import org.http4s.Status
+import com.github.singleton11.domain.{CurrentTrack, Track}
 
 trait StreamingServiceAlgebra[F[_]] {
-  def search(authToken: String)(query: String): F[Response]
+  def search(authToken: String)(currentTrack: CurrentTrack): F[Track]
 
-  def like(authToken: String)(serviceIdentifier: String): F[Status]
+  def like(authToken: String)(serviceIdentifier: String): F[Unit]
 }
