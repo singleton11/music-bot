@@ -2,7 +2,7 @@ package com.github.singleton11.interpreter
 
 import cats.effect.{ConcurrentEffect, IO}
 import com.github.singleton11.algebra.StreamingServiceAlgebra
-import com.github.singleton11.domain.error.{NoArtistFoundError, NoItemsInResponseError, SomethingWentWrongWhenLike}
+import com.github.singleton11.domain.error.{NoArtistFoundError, NoItemsInResponseError, SomethingWentWrongWhenLike, SomethingWentWrongWhenSearch}
 import com.github.singleton11.domain.{CurrentTrack, Track}
 import com.github.singleton11.dto.spotify.Response
 import org.http4s.Method._
@@ -23,7 +23,10 @@ object SpotifyStreamingServiceAlgebra {
       val uri = composeSearchUri(s"${currentTrack.artist} ${currentTrack.track}")
       val request = composeSearchRequest(authToken, uri)
       BlazeClientBuilder[IO](global).resource.use {
-        client => client.expect[Response](request).flatMap(response => getValidatedTrack(response, currentTrack.artist))
+        client =>
+          client.expect[Response](request)
+            .handleErrorWith(throwable => IO.raiseError(SomethingWentWrongWhenSearch(throwable)))
+            .flatMap(response => getValidatedTrack(response, currentTrack.artist))
       }
     }
 
