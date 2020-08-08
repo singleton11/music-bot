@@ -41,6 +41,7 @@ object SpotifyStreamingServiceAlgebra {
       }
     }
 
+    //noinspection SameParameterValue
     private def composeSearchUri(query: String) = HOST
       .withPath("/v1/search")
       .withQueryParam("q", query)
