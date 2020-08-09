@@ -11,4 +11,7 @@ case class HtmlCurrentTrackParsingError() extends Throwable
 case class SpotifyAuthTokenNotFound() extends Throwable
 
 case class SomethingWentWrongWhenLike() extends Throwable
+
 case class SomethingWentWrongWhenSearch(throwable: Throwable) extends Throwable
+
+case class NoAuthTokenInCache() extends Throwable
