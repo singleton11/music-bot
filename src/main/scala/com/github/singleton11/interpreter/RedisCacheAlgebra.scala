@@ -2,7 +2,7 @@ package com.github.singleton11.interpreter
 
 import cats.effect.{IO, _}
 import com.github.singleton11.algebra.CacheAlgebra
-import com.github.singleton11.domain.error.NoAuthTokenInCache
+import com.github.singleton11.domain.NoAuthTokenInCache
 import dev.profunktor.redis4cats.Redis
 import dev.profunktor.redis4cats.effect.Log.Stdout._
 

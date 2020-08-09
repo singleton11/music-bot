@@ -1,4 +1,4 @@
-package com.github.singleton11.domain.error
+package com.github.singleton11.domain
 
 case class NoItemsInResponseError() extends Throwable
 

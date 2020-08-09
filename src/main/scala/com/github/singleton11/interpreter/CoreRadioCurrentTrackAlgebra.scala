@@ -3,8 +3,7 @@ package com.github.singleton11.interpreter
 
 import cats.effect.{ConcurrentEffect, IO}
 import com.github.singleton11.algebra.CurrentTrackAlgebra
-import com.github.singleton11.domain.CurrentTrack
-import com.github.singleton11.domain.error.HtmlCurrentTrackParsingError
+import com.github.singleton11.domain.{CurrentTrack, HtmlCurrentTrackParsingError}
 import com.github.singleton11.util.implicits.StringUtils
 import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.implicits._

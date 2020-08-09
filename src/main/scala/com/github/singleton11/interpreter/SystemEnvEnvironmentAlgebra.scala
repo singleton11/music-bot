@@ -2,7 +2,7 @@ package com.github.singleton11.interpreter
 
 import cats.effect.IO
 import com.github.singleton11.algebra.EnvironmentAlgebra
-import com.github.singleton11.domain.error.SpotifyAuthTokenNotFound
+import com.github.singleton11.domain.SpotifyAuthTokenNotFound
 
 
 object SystemEnvEnvironmentAlgebra {

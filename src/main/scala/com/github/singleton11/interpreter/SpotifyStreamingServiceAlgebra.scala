@@ -2,8 +2,7 @@ package com.github.singleton11.interpreter
 
 import cats.effect.{ConcurrentEffect, IO}
 import com.github.singleton11.algebra.StreamingServiceAlgebra
-import com.github.singleton11.domain.error.{NoArtistFoundError, NoItemsInResponseError, SomethingWentWrongWhenLike, SomethingWentWrongWhenSearch}
-import com.github.singleton11.domain.{CurrentTrack, Track}
+import com.github.singleton11.domain._
 import com.github.singleton11.dto.spotify.Response
 import org.http4s.Method._
 import org.http4s._
