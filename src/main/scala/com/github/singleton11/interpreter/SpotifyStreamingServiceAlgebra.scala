@@ -18,8 +18,8 @@ object SpotifyStreamingServiceAlgebra {
 
   val HOST = uri"https://api.spotify.com"
 
-  def IOInterpreter(implicit effect: ConcurrentEffect[IO], entityDecoder: EntityDecoder[IO, Response]): StreamingServiceAlgebra[IO] = new StreamingServiceAlgebra[IO] {
-    override def search(authToken: String)(currentTrack: CurrentTrack): IO[Track] = {
+  def IOInterpreter(authToken: String)(implicit effect: ConcurrentEffect[IO], entityDecoder: EntityDecoder[IO, Response]): StreamingServiceAlgebra[IO] = new StreamingServiceAlgebra[IO] {
+    override def search(currentTrack: CurrentTrack): IO[Track] = {
       val uri = composeSearchUri(s"${currentTrack.artist} ${currentTrack.track}")
       val request = composeSearchRequest(authToken, uri)
       BlazeClientBuilder[IO](global).resource.use {
@@ -30,7 +30,7 @@ object SpotifyStreamingServiceAlgebra {
       }
     }
 
-    override def like(authToken: String)(serviceIdentifier: String): IO[Unit] = {
+    override def like(serviceIdentifier: String): IO[Unit] = {
       val uri = composeLikeUri(serviceIdentifier)
       val request = composeLikeRequest(authToken, uri)
       BlazeClientBuilder[IO](global)(effect).resource.use { client =>

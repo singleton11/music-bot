@@ -41,3 +41,5 @@ libraryDependencies +=
   "org.typelevel" %% "cats-tagless-macros" % "0.11"
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
+
+libraryDependencies += "dev.profunktor" % "redis4cats-effects_2.13" % "0.10.2"

@@ -14,13 +14,16 @@ object Main extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     for {
       logger <- Slf4jLogger.create[IO]
-      currentTrack <- CoreRadioCurrentTrackAlgebra.IOInterpreter.getCurrentTrack
+      coreRadioCurrentTrackAlgebraInterpreter = CoreRadioCurrentTrackAlgebra.IOInterpreter
+      currentTrack <- coreRadioCurrentTrackAlgebraInterpreter.getCurrentTrack
       _ <- logger.info(s"Current track is $currentTrack")
-      authToken <- SystemEnvEnvironmentAlgebra.IOInterpreter.getSpotifyAuthorizationToken
+      systemEnvEnvironmentAlgebraInterpreter = SystemEnvEnvironmentAlgebra.IOInterpreter
+      authToken <- systemEnvEnvironmentAlgebraInterpreter.getSpotifyAuthorizationToken
+      spotifyStreamingServiceAlgebraInterpreter = SpotifyStreamingServiceAlgebra.IOInterpreter(authToken)
       _ <- logger.info(s"Auth token is $authToken")
-      track <- SpotifyStreamingServiceAlgebra.IOInterpreter.search(authToken)(currentTrack)
+      track <- spotifyStreamingServiceAlgebraInterpreter.search(currentTrack)
       _ <- logger.info(s"Current track found in spotify $track")
-      _ <- SpotifyStreamingServiceAlgebra.IOInterpreter.like(authToken)(track.serviceIdentifier)
+      _ <- spotifyStreamingServiceAlgebraInterpreter.like(track.serviceIdentifier)
       _ <- logger.info("Track liked")
     } yield ExitCode.Success
   }
